@@ -18,6 +18,8 @@ class RestaurantTest {
         LocalTime openingTime = LocalTime.parse("10:30:00");
         LocalTime closingTime = LocalTime.parse("22:00:00");
         restaurant = new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
+        restaurant.addToMenu("Coffee",219);
+        restaurant.addToMenu("Tea", 289);
     }
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>OPEN/CLOSED<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -45,7 +47,7 @@ class RestaurantTest {
     public void order_value_should_get_cumulative_total_when_collection_of_items_selected(){
         restaurantDetails();
         itemList = restaurant.getMenu();
-        assertEquals(506,restaurant.getOrderValue(itemList));
+        assertEquals(508,restaurant.getOrderValue(itemList));
     }
 
     @Test
