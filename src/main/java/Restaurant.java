@@ -32,6 +32,10 @@ public class Restaurant {
         //DELETE ABOVE RETURN STATEMENT AND WRITE CODE HERE
     }
 
+    public int getOrderValue(List<Item> item){
+        return 0;
+    }
+
     private Item findItemByName(String itemName){
         for(Item item: menu) {
             if(item.getName().equals(itemName))

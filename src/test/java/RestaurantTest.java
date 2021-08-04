@@ -4,10 +4,15 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+import java.util.List;
 
 class RestaurantTest {
     Restaurant restaurant;
     //REFACTOR ALL THE REPEATED LINES OF CODE
+
+    List<Item> itemList = new ArrayList<Item>();
+
 
     public void restaurantDetails(){
         LocalTime openingTime = LocalTime.parse("10:30:00");
@@ -36,6 +41,22 @@ class RestaurantTest {
     //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
+    @Test
+    public void order_value_should_get_cumulative_total_when_collection_of_items_selected(){
+        restaurantDetails();
+        itemList = restaurant.getMenu();
+        assertEquals(506,restaurant.getOrderValue(itemList));
+    }
+
+    @Test
+    public void order_value_should_reduce_cumulative_total_when_an_item_removed(){
+        restaurantDetails();
+        itemList = restaurant.getMenu();
+        int total = restaurant.getOrderValue(itemList);
+        int afterTotal = itemList.get(1).getPrice();
+        itemList.remove(1);
+        assertEquals(total-afterTotal,restaurant.getOrderValue(itemList));
+    }
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>MENU<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @Test
